@@ -32,6 +32,10 @@ import logoSlack from "assets/images/small-logos/logo-slack.svg";
 import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
 import logoInvesion from "assets/images/small-logos/logo-invision.svg";
 
+import { useState } from "react";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+
 export default function data() {
   const Project = ({ image, name }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
@@ -53,12 +57,36 @@ export default function data() {
     </MDBox>
   );
 
+  const [menu, setMenu] = useState(null);
+
+  const openMenu = ({ currentTarget }) => setMenu(currentTarget);
+  const closeMenu = () => setMenu(null);
+
+  const renderMenu = (
+    <Menu
+      id="simple-menu"
+      anchorEl={menu}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "left",
+      }}
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      open={Boolean(menu)}
+      onClose={closeMenu}
+    >
+      <MenuItem onClick={closeMenu}>Disable Ad</MenuItem>
+      <MenuItem onClick={closeMenu}>Delete Ad</MenuItem>
+    </Menu>
+  );
+
   return {
     columns: [
-      { Header: "project", accessor: "project", width: "30%", align: "left" },
-      { Header: "budget", accessor: "budget", align: "left" },
+      { Header: "Ads", accessor: "project", width: "30%", align: "left" },
+      { Header: "revenue", accessor: "budget", align: "left" },
       { Header: "status", accessor: "status", align: "center" },
-      { Header: "completion", accessor: "completion", align: "center" },
       { Header: "action", accessor: "action", align: "center" },
     ],
 
@@ -78,7 +106,8 @@ export default function data() {
         completion: <Progress color="info" value={60} />,
         action: (
           <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
+            <Icon onClick={openMenu}>more_vert</Icon>
+            {renderMenu}
           </MDTypography>
         ),
       },
@@ -97,7 +126,8 @@ export default function data() {
         completion: <Progress color="success" value={100} />,
         action: (
           <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
+            <Icon onClick={openMenu}>more_vert</Icon>
+            {renderMenu}
           </MDTypography>
         ),
       },
@@ -116,7 +146,8 @@ export default function data() {
         completion: <Progress color="error" value={30} />,
         action: (
           <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
+            <Icon onClick={openMenu}>more_vert</Icon>
+            {renderMenu}
           </MDTypography>
         ),
       },
@@ -135,7 +166,8 @@ export default function data() {
         completion: <Progress color="info" value={80} />,
         action: (
           <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
+            <Icon onClick={openMenu}>more_vert</Icon>
+            {renderMenu}
           </MDTypography>
         ),
       },
@@ -154,7 +186,8 @@ export default function data() {
         completion: <Progress color="error" value={0} />,
         action: (
           <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
+            <Icon onClick={openMenu}>more_vert</Icon>
+            {renderMenu}
           </MDTypography>
         ),
       },
@@ -173,7 +206,8 @@ export default function data() {
         completion: <Progress color="success" value={100} />,
         action: (
           <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
+            <Icon onClick={openMenu}>more_vert</Icon>
+            {renderMenu}
           </MDTypography>
         ),
       },
