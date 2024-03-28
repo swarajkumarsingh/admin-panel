@@ -1,7 +1,7 @@
 import React from "react";
 
 import Fields from "layouts/create-ad/components/Fields";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+import DashboardNavbar from "layouts/create-ad/components/NavBar";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 
